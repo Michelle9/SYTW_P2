@@ -39,3 +39,9 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+#col{
+  background-color: #E8E8E8 ;
+  text-align: left;
+  margin-bottom: 1em;
+}
