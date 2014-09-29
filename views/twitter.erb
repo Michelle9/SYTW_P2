@@ -1,60 +1,94 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="logo.png">
+	<head>
+		<meta charset="utf-8">
+		<title> Amigos más populares en Twitter </title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-    <title>Tus amigos más populares</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Add custom CSS here -->
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- JavaScript -->
-    <script src="js/jquery-1.11.1.js"></script>
-    <script src="js/bootstrap.js"></script>
-</head>
-
-<body>
-    <div class="container">
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		
-      <form class="form-signin" action="/" method="post">
-        <h2 class="form-signin-heading">Amigos populares</h2>
-        <input class="form-control" placeholder="Nombre de la cuenta de Twitter" name="firstname" autofocus type="text">
-        <input class="form-control" placeholder="Número de usuarios en la lista (max.10)" name="n" type="text">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Generar lista</button>
-      </form>       
-    </div>
-    
-    <div class="container">
-          <% if @name != ''%>
-          <%if @number>10%>
-					<p id="warning"> Sólo se pueden mostrar 10 amigos </p>
-				<%elsif @seguidores.length < @number %>
-					<p id="warning">El usuario sólo tiene <%= @seguidores.length%> amigos. </p>
-					<p> Amigos más populares </p>
-					<ol>
-						<% @seguidores.each do |i| %> 
-							<li id="col"><%= i %><br></li>
-						<% end %>
-					</ol>
-				<%else%>
-					<p>Tu amigos más populares de Twitter :</p>
-					<ol>
-						<% @seguidores.each do |i| %> 
-							<li id="col"><%= i %><br></li>
-						<% end %>
-					</ol>
-				<%end%>
-       <%end%>
-    </div>
-</body>
+	</head>
 
+	<body>
+
+		<div class="container-fluid">
+		<!--  *****   Cabecera *****  -->
+			<div class="row">
+				<div class="cabecera">
+					<div class="col-md-2">
+					  <p><img src="/bird_icon.png" WIDTH=100 HEIGHT=100 />					
+					</div>
+					<div class="col-md-10">
+					  <h1>  -- Tus amigos más populares de Twitter -- </h1>						
+					</div>
+				</div>
+			</div>
+			<!--  *****   Central *****  -->
+			<div class="row">
+				<!--  Menu  -->
+				<div class="col-md-2">
+				
+				</div>
+				<div class="col-md-10">
+					<div class ="tabla">
+					<table class="table table-hover">
+						
+						<% if @name == ''%>
+							<p id="warning"> No se ha introducido usuario o es incorrecto </p>
+						<%else%>
+							<p><b> Usuario <i><%= @name %></i></b></p>
+						<%end %>
+
+						<% if @name != ''%>
+							<%if @number>10%>
+								<p id="warning"> Sólo se puede mostrar 10 amigos </p>
+							<%elsif @seguidores.length < @number %>
+								<p id="warning">El usuario sólo tiene <%= @seguidores.length%> amigos. </p>
+								<p> Amigos más populares </p>
+								<ol>
+									<% @seguidores.each do |i| %> 
+										<li id="col"><%= i %><br></li>
+									<% end %>
+								</ol>
+							<%else%>
+								<p>Amigos más populares :</p>
+								<ol>
+									<% @seguidores.each do |i| %> 
+										<li id="col"><%= i %><br></li>
+									<% end %>
+								</ol>
+							<%end%>
+						<%end%>
+						
+					</table>
+					</div>
+				</div>
+				</div>
+			</div>
+			
+			<!--  *****   Pie *****  -->
+			<div class="pie">
+				<div class="row">
+					<div class="col-md-2">
+					  
+					</div>
+					<div class="col-md-10">
+					  <p> <b>© SYTW  </b> - Práctica 2 © - Realizado por: <b>Jhoanmary Prz Fariña y Santiago Sainz F.</b></p>
+					</div>
+					  
+					 
+				</div>
+			</div>
+		</div>
+		
+		
+
+
+
+	
+	</body>
+	
 </html>
