@@ -10,4 +10,4 @@
 ------------
 
 ## Jhoanmary Pérez Fariña
-## Santiago Sainz Fernández
+## Santiago Sainz Fernández Hikoreko
