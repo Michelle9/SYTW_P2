@@ -35,12 +35,24 @@
     
     <div class="container">
           <% if @name != ''%>
-          <p>Tus amigos más populares son:</p>
-          <ol>
-           <% @seguidores.each do |i| %>
-              <li id="col"><%= i %><br></li>
-           <% end %>
-          </ol>
+          <%if @number>10%>
+					<p id="warning"> Sólo se pueden mostrar 10 amigos </p>
+				<%elsif @seguidores.length < @number %>
+					<p id="warning">El usuario sólo tiene <%= @seguidores.length%> amigos. </p>
+					<p> Amigos más populares </p>
+					<ol>
+						<% @seguidores.each do |i| %> 
+							<li id="col"><%= i %><br></li>
+						<% end %>
+					</ol>
+				<%else%>
+					<p>Tu amigos más populares de Twitter :</p>
+					<ol>
+						<% @seguidores.each do |i| %> 
+							<li id="col"><%= i %><br></li>
+						<% end %>
+					</ol>
+				<%end%>
        <%end%>
     </div>
 </body>
