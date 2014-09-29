@@ -44,12 +44,8 @@
                                     </form>
 				                </div>
 				            </div>
-                <div class="contenido col-lg-6 col-lg-offset-3">
-                    <% if flash[:error1] %>
-                        <p ><%= flash[:error1] %>     
-                    <% elsif flash[:error] %>
-                        <p ><%= flash[:error] %>    
-                    <% elsif @twitter_username != ''%>
+                <div class="contenido col-lg-6 col-lg-offset-3"> 
+                    <% if @twitter_username != ''%>
                         <p>Tus amigos más populares son:</p>
                         <ol>
                             <% @seguidores.each do |i| %>
