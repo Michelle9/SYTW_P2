@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" type="text/css" href="/css/styles.css" />		
+		<title>SYTW - P2</title>
+		
+		
+	</head>
+	<body>
+		<div id="cabecera">
+	 			<p><img src="/bird_icon.png" WIDTH=100 HEIGHT=100 />
+	 			<b>Popularidad amigos de Twitter</b></p>
+	 	</div>
+	 	
+	 	<div id="re">
+		 	<form action="/" method="post">
+		   		<p><b>Introduzca su nombre en Twitter: </b></p><input type="text" name="firstname"  value="" autofocus>
+		   		<p><b>¿Cuántos seguidores desea ver? </b></p><input type="text" name="n" value="1">
+		   		<input  type="submit" value="Submit" >
+		 	</form>
+	 	</div>
+ 		
+		<div id="izquierda">
+			<% if @name == ''%>
+				<p id="warning"> No se ha introducido usuario o es incorrecto </p>
+			<%else%>
+				<p><b> Usuario <i><%= @name %></i></b></p>
+			<%end %>
+
+			<% if @name != ''%>
+				<%if @number>10%>
+					<p id="warning"> Sólo se puede mostrar 10 amigos </p>
+				<%elsif @seguidores.length < @number %>
+					<p id="warning">El usuario sólo tiene <%= @seguidores.length%> amigos. </p>
+					<p> Amigos más populares </p>
+					<ol>
+						<% @seguidores.each do |i| %> 
+							<li id="col"><%= i %><br></li>
+						<% end %>
+					</ol>
+				<%else%>
+					<p>Amigos más populares :</p>
+					<ol>
+						<% @seguidores.each do |i| %> 
+							<li id="col"><%= i %><br></li>
+						<% end %>
+					</ol>
+				<%end%>
+			<%end%>
+		</div>	
+	</body>
+</html>
