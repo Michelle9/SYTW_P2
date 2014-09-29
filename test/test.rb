@@ -12,9 +12,10 @@ include Rack::Test::Methods
 	
 describe "SYTW P2" do
 
-  it "Mostrar pagina principal"
+  it "Mostrar pagina principal" do
 	get '/'
 	assert last_response.ok?
-  end
+  end  
   
 end
+
