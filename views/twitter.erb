@@ -16,7 +16,7 @@
 
     <!-- Add custom CSS here -->
     <link href="/landing-page.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/estilo.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 
     <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
@@ -48,13 +48,12 @@
                     <% if flash[:error1] %>
                         <p ><%= flash[:error1] %>     
                     <% elsif flash[:error] %>
-                        <p ><%= flash[:error] %>
-                    <% if     
+                        <p ><%= flash[:error] %>    
                     <% elsif @twitter_username != ''%>
                         <p>Tus amigos más populares son:</p>
                         <ol>
-                            <% 10.times do |i| %>
-                                <li id="col"><%= @friends[i] %><br></li>
+                            <% @seguidores.each do |i| %>
+                                <li id="col"><%= i %><br></li>
                             <% end %>
                         </ol>
                     <%end%>
