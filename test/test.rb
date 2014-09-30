@@ -1,33 +1,38 @@
-ENV['RACK_ENV'] = 'test'
+# -*- coding: utf-8 -*-
+require 'twitter'
+require 'sinatra'
 
-require 'minitest/autorun'
-require 'rack/test'
-require_relative '../twitter.rb'
+class PopularTwitter
 
+	require './configure.rb'
 
-include Rack::Test::Methods
-	
-	def app
-		Sinatra::Application
+	def usuario(client,username)
+		return client.user? username
 	end
-	
-describe "SYTW P2" do
-  
-  #Definir objeto para las pruebas
 
-  it "Should return index" do
-	get '/'
-	assert last_response.ok?
-  end  
-  
-#   it "Comprobar titulo" do
-# 	get '/'
-# 	assert_match "<title>SYTW - P2</title>", last_response.body
-#   end
-  
-#   it "should return user's number of friends" do
-# 	
-#   end
-  
+	def amigos(client,username)
+		return client.user(username).friends_count
+	end
+
+	def users(username,followers)
+		if followers.to_i <= 0
+			return [["error","Número incorrecto de usuarios",0]]
+		elsif followers.to_i > 10
+			return [["error","Limite de usuarios",0]]
+		else
+			client = my_twitter_client()
+			return client.friends(username,{}).take(followers.to_i).map{|i| [i.name,i.followers_count,client.user(i.id).profile_image_url]}.sort_by{|i,j| -j}
+		end
+	end
+
 end
 
+get "/" do
+	@friends = []
+	erb :index
+end
+
+get "/:username/:followers" do
+	@friends = PopularTwitter.new.users(params[:username],params[:followers])
+	erb :index
+end

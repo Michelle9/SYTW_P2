@@ -2,7 +2,25 @@
 require 'twitter'
 require 'sinatra'
 
-require './configure'
+
+
+class MyApp
+  
+  require './configure'
+  
+  def dusuario(client, name)
+	return client.user? name
+  end
+
+  
+  def damigos (client, name)
+	client = my_twitter_client()
+	return client.friends(name,{})
+  end
+  
+end
+
+
 
 get '/' do
   @seguidores = []
@@ -17,13 +35,14 @@ post '/' do
   @name = params[:firstname] || ''
   @number = params[:n].to_i
   @number = 10 if @number > 10
-  if client.user? @name 
-    amigos = client.friends(@name,{})
-    amigos = amigos.map { |i| [i.name, i.followers_count]}
-    amigos = amigos.sort_by { | x,y | -y}
-    @seguidores = amigos.take(@number)
-  end      
-  erb :twitter
+  tw = MyApp.new
+  
+	if (tw.dusuario(client, @name) == true)
+	  amigos = tw.damigos(client, @name)
+	  amigos = amigos.map { |i| [i.name, i.followers_count]}
+	  amigos = amigos.sort_by { | x,y | -y}
+	  @seguidores = amigos.take(@number)
+	end
+	erb :twitter
 end
-  
-  
+ 
