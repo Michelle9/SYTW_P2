@@ -6,7 +6,6 @@ GEM
     daemons (1.1.9)
     equalizer (0.0.9)
     eventmachine (1.0.3)
-    eventmachine (1.0.3-x86-mingw32)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     http (0.6.2)
@@ -48,7 +47,6 @@ GEM
 
 PLATFORMS
   ruby
-  x86-mingw32
 
 DEPENDENCIES
   rack-test
