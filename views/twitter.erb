@@ -37,9 +37,9 @@
 					<div class ="tabla">
 					<table class="table table-hover">
 						<form action="/" method="post">
-							<p><b>Introduzca su nombre en Twitter: </b></p><input type="text" name="firstname"  value="" autofocus>
-							<p><b>¿Cuántos seguidores desea ver? </b></p><input type="text" name="n" value="1">
-							<input  type="submit" value="Submit" >
+							<p ><b>Introduzca su nombre en Twitter: </b></p><input type="text" name="firstname"  value="" autofocus>
+							<p ><b>¿Cuántos seguidores desea ver? </b></p><input type="text" name="n" value="1">
+							<input  type="submit" value="Generar" >
 						</form>
 												
 					</table>
@@ -49,25 +49,25 @@
 					<table class="table table-hover">
 						
 						<% if @name == ''%>
-							<p id="warning"> No se ha introducido usuario o es incorrecto </p>
+							<p class="text-center" id="warning"> No se ha introducido usuario o es incorrecto </p>
 						<%else%>
-							<p><b> Usuario <i><%= @name %></i></b></p>
+							<p class="text-center"><b> Usuario <i><%= @name %></i></b></p>
 						<%end %>
 
 						<% if @name != ''%>
 							<%if @number>10%>
-								<p id="warning"> Sólo se puede mostrar 10 amigos </p>
+								<p class="text-center" id="warning"> Sólo se puede mostrar 10 amigos </p>
 							<%elsif @seguidores.length < @number %>
-								<p id="warning">El usuario sólo tiene <%= @seguidores.length%> amigos. </p>
-								<p> Amigos más populares </p>
-								<ol>
+								<p class="text-center" id="warning">El usuario sólo tiene <%= @seguidores.length%> amigos. </p>
+								<p class="text-center"> Amigos más populares </p>
+								<ol class="text-center">
 									<% @seguidores.each do |i| %> 
 										<li id="col"><%= i %><br></li>
 									<% end %>
 								</ol>
 							<%else%>
-								<p>Amigos más populares :</p>
-								<ol>
+								<p class="text-center">Amigos más populares :</p>
+								<ol class="text-center">
 									<% @seguidores.each do |i| %> 
 										<li id="col"><%= i %><br></li>
 									<% end %>
@@ -88,7 +88,7 @@
 					  
 					</div>
 					<div class="col-md-10">
-					  <p> <b>© SYTW  </b> - Práctica 2 © - Realizado por: <b>Jhoanmary Prz Fariña y Santiago Sainz F.</b></p>
+					  <p> <b>© SYTW  </b> - Práctica 2 © - Realizado por: <b>Jhoanmary Prz Fariña y Santiago Sainz Fdez.</b></p>
 					</div>
 					  
 					 
