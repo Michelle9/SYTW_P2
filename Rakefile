@@ -8,4 +8,8 @@ desc "Testing"
 	sh "ruby ./test/test.rb"
   end
 
+ desc "Service"
+  task :server do
+	sh "ruby twitter.rb"
+  end 
   
