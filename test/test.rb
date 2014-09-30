@@ -1,38 +1,40 @@
-# -*- coding: utf-8 -*-
-require 'twitter'
-require 'sinatra'
+ENV['RACK_ENV'] = 'test'
 
-class PopularTwitter
+require 'minitest/autorun'
+require 'rack/test'
+require_relative '../twitter.rb'
 
-	require './configure.rb'
 
-	def usuario(client,username)
-		return client.user? username
+include Rack::Test::Methods
+	
+	def app
+		Sinatra::Application
 	end
+	
+describe "SYTW P2 - page" do
+  
 
-	def amigos(client,username)
-		return client.user(username).friends_count
-	end
+  it "Should return index" do
+	get '/'
+	assert last_response.ok?
+  end  
+  
+  it "should return title" do
+	get '/'
+	assert_match "<title> Amigos más populares en Twitter </title>", last_response.body
+  end
+  
+  it "should return foot" do
+	get '/'
+	assert_match "<p> <b>© SYTW  </b> - Práctica 2 © - Realizado por: <b>Jhoanmary Prz Fariña y Santiago Sainz Fdez.</b></p>", last_response.body
+  end
+  
+  it "should return form" do
+	get '/'
+	assert_match "<p ><b>Introduzca su nombre en Twitter: </b></p>", last_response.body
+	assert_match "<p ><b>¿Cuántos seguidores desea ver? </b></p>", last_response.body
+  end
 
-	def users(username,followers)
-		if followers.to_i <= 0
-			return [["error","Número incorrecto de usuarios",0]]
-		elsif followers.to_i > 10
-			return [["error","Limite de usuarios",0]]
-		else
-			client = my_twitter_client()
-			return client.friends(username,{}).take(followers.to_i).map{|i| [i.name,i.followers_count,client.user(i.id).profile_image_url]}.sort_by{|i,j| -j}
-		end
-	end
-
+  
 end
 
-get "/" do
-	@friends = []
-	erb :index
-end
-
-get "/:username/:followers" do
-	@friends = PopularTwitter.new.users(params[:username],params[:followers])
-	erb :index
-end
