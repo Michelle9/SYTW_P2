@@ -37,7 +37,9 @@ li {
 }
 
 .tabla {
-	border:3px solid #0B0B61;
+	/*border:3px solid #0B0B61;*/
+	background: rgba(46, 51, 56, 0.8);
+	border-radius: 15px;
 	width: 600px;
 }
 
@@ -50,6 +52,7 @@ li {
 }
 
 .cabecera {
+    background: rgba(46, 51, 56, 0.8);
 	color: white;
 	height: 100px;
 	/*background-image: url("./cabecera.jpg");*/
