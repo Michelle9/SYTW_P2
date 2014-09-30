@@ -1,15 +1,12 @@
-desc "Ejecutar la aplicación"
-  task :default do
-	sh "ruby twitter.rb"
-  end
+task(:default) do 
+  require './test/test.rb' 
+end
 
 desc "Testing"
-  task :test do
-	sh "ruby ./test/test.rb"
-  end
+task :test => :default
 
- desc "Service"
-  task :server do
-	sh "ruby twitter.rb"
-  end 
+desc "Service"
+task :server do
+  sh "ruby twitter.rb"
+end
   
