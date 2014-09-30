@@ -38,3 +38,19 @@ describe "SYTW P2 - page" do
   
 end
 
+describe "SYTW P2 - Funtions" do
+  before :all do
+	@tw = MyApp.new
+	@client = my_twitter_client()
+	@name1 = "jhoampf"
+	@name2 = "jjhhooaampf"
+  end
+  
+  it "the user exist" do
+	assert @tw.dusuario(@client,@name1)
+  end
+  
+  it "the user not exist" do
+	refute @tw.dusuario(@client, @name2)
+  end
+end
